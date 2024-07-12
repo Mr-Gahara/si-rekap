@@ -1,12 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Exports\UsersExport;
-use App\Imports\UsersImport;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
 {
@@ -22,7 +18,7 @@ class UserController extends Controller
     */
     public function export() 
     {
-        return Excel::download(new UsersExport, 'users.xlsx');
+        // return Excel::download(new UsersExport, 'users.xlsx');
     }
          
     /**
@@ -30,13 +26,6 @@ class UserController extends Controller
     */
     public function import(Request $request) 
     {
-        // Validate incoming request data
-        $request->validate([
-            'file' => 'required|max:2048',
-        ]);
-  
-        Excel::import(new UsersImport, $request->file('file'));
-                 
-        return back()->with('success', 'Users imported successfully.');
+        
     }
 }
