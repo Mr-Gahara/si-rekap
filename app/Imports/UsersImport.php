@@ -18,7 +18,7 @@ class UsersImport implements ToCollection
     {
         foreach ($rows as $row) 
         {
-            if($row['0'] != null && User::where('email',$row['1'])->doesntExist()) {
+            if( ($row['0'] != null || $row['1'] != null) && User::where('email',$row['1'])->doesntExist()) {
                 User::create([
                     'name' => $row['0'],
                     'email' => $row['1'],
